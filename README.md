@@ -30,9 +30,9 @@ The following animation shows the web application's appearance and functionality
 
 
 ## Websites
-* [URL to the Simple Day Scheduler App](https://mehdimahmud79.github.io/SimpleDayScheduler/)
+* [URL to the Weather dashboard](https://mehdimahmud79.github.io/WeatherDashboard/)
 
-* [The URL of the GitHub repository](https://github.com/MehdiMahmud79/SimpleDayScheduler)
+* [The URL of the GitHub repository](https://github.com/MehdiMahmud79/WeatherDashboard)
 
 - - -
 © 2021 Mehdi Mahmud.
