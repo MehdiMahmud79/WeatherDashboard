@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Weather Dashboard</h1>
+            <h2 > <span id="currentDay"></span></h2>
+            <div class="nitification"></div>
+            <h2 class="ERROR">fasfasfasf</h2>
+
+        </header>
+        <div class="main-container">
+            <div class="search-history">
+                <div class="searchbar">
+                    <h4>Search for a city</h4>
+                    <div class="input-group my-2">
+                        <input type="text" class="form-control cityName" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary " type="button ">  <span class="fa fa-search"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="history">
+                    <h4>History items</h4>
+                </div>
+            </div>
+            <div class="city-weather">
+                <div class="todaysWeather">
+                    <div class="todayHeading">
+                        <div>
+                            <h2 class="todayTime"><i class="fa fa-map-marker local" aria-hidden="true"></i><span></span></h2>
+                            <h3 class="description"></h3>
+                            <img class="weatherIcon"  src=".\icons/unknown.png" alt="">
+                            <p class="Temprature">Temprature: <span>--</span> </p>
+                        </div>
+                    </div>
+                        <div class="todayContainer">
+                            <ul class="info">
+                                <li class="Humidity">Humidity: <span>--</span></li>   
+                                <li class="WindSpeed">WindSpeed: <span>--</span> </li>   
+                                <li class="UVIndex">UV Index: <span>--</span></li> 
+                                <li class="uviImage"><img  src="./icons/uvi.png" alt="uvi"> </li>  
+                            </ul>
+                        </div>
+
+                    
+                </div>
+
+                <div class="fiveDaysWaether">
+                    <h2>5-Day Forecast:</h2>
+                    <div class="container">
+                        <div class="dayItem day1">
+                        <img   class="image" src=".\icons/unknown.png" alt="weather image">
+                        <ul class="info">
+                            <li class="Temprature">Temprature: <span>°12</span></li> 
+                            <li class="Humidity">Humidity:<span> 65% </span></li>   
+                            <li class="WindSpeed">WindSpeed:<span> 8.65 MPH</span> </li>   
+                            <li class="UVIndex">UV Index:  <span>6.75</span></li>   
+                        </ul>
+                        </div>
+                        <div class="dayItem day2">
+                            <img   class="image" src=".\icons/unknown.png" alt="weather image">
+                            <ul class="info">
+                                <li class="Temprature">Temprature: <span>°12</span></li> 
+                                <li class="Humidity">Humidity:<span> 65% </span></li>   
+                                <li class="WindSpeed">WindSpeed:<span> 8.65 MPH</span> </li>   
+                                <li class="UVIndex">UV Index:  <span>6.75</span></li>   
+                            </ul>
+                            </div>
+                        <div class="dayItem day3">
+                        <img   class="image" src=".\icons/unknown.png" alt="weather image">
+                        <ul class="info">
+                            <li class="Temprature">Temprature: <span>°12</span></li> 
+                            <li class="Humidity">Humidity:<span> 65% </span></li>   
+                            <li class="WindSpeed">WindSpeed:<span> 8.65 MPH</span> </li>   
+                            <li class="UVIndex">UV Index:  <span>6.75</span></li>   
+                        </ul>
+                        </div>
+                        <div class="dayItem day4">
+                            <img   class="image" src=".\icons/unknown.png" alt="weather image">
+                            <ul class="info">
+                                <li class="Temprature">Temprature: <span>°12</span></li> 
+                                <li class="Humidity">Humidity:<span> 65% </span></li>   
+                                <li class="WindSpeed">WindSpeed:<span> 8.65 MPH</span> </li>   
+                                <li class="UVIndex">UV Index:  <span>6.75</span></li>   
+                            </ul>
+                            </div>
+                        <div class="dayItem day5">
+                        <img   class="image" src=".\icons/unknown.png" alt="weather image">
+                        <ul class="info">
+                            <li class="Temprature">Temprature: <span>°12</span></li> 
+                            <li class="Humidity">Humidity:<span> 65% </span></li>   
+                            <li class="WindSpeed">WindSpeed:<span> 8.65 MPH</span> </li>   
+                            <li class="UVIndex">UV Index:  <span>6.75</span></li>   
+                        </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="./assets/Js/script.js"></script>
+
+</body>
+</html>

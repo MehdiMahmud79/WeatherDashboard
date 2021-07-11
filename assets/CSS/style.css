@@ -1,0 +1,178 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color:rgb(44, 44, 44);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+
+}
+
+main{
+    min-width: 85%;
+    background-color: rgb(0, 125, 228);
+}
+.main-container{
+    background-color:rgb(131, 131, 131);
+    display:flex;
+}
+header{
+    position: relative;
+    background-image: url(./assets/sky.jpg);
+    background-size:cover;
+    background-position: 0% 40%;
+    background-repeat: no-repeat;
+    min-height:100px;
+    color: black;
+}
+header h1, header h2{
+    text-align: center;
+    padding:20px;
+    color: black;
+
+}
+.local{
+    color: rgb(0, 80, 13);
+    font-size: 30px;
+}
+.searchbar h4, .search-history h4{
+    padding: 10px 20px 0 20px;
+}
+.history{
+    border-top: 1px solid grey;
+    margin:20px;
+}
+.searchbar {
+    padding: 10px 20px 0 20px;
+
+}
+.searchbar input, .todayTime{
+    text-transform: uppercase;
+
+}
+.search-history{
+    width: 25%;
+    margin:10px;
+    background-color:rgb(209, 209, 209);
+    border-radius:20px;
+
+}
+.city-weather{
+    width: 74%;
+    margin:10px;
+    background-color:rgb(0, 125, 228);
+    border-radius:20px;
+    
+ 
+}
+.uviImage img{
+    max-height:100px;
+}
+.todaysWeather{
+display: flex;
+    background-color:rgb(224, 224, 224);
+    min-height:200px;
+    border-radius:20px;
+    margin:10px;
+    padding:20px;
+    justify-content:space-around;
+}
+.todayHeading{
+    padding:10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.336);
+    /* background-color:rgb(216, 9, 9); */
+    border-radius:20px;
+
+}
+.todayHeading p{
+
+    font-size:1.3em;
+}
+.todayHeading span{
+color: rgb(129, 0, 26);
+    font-size:1.5em;
+}
+.todayHeading .description{
+    color:darkgreen;
+}
+.todayContainer{
+    display:flex;
+    flex-direction:column;
+
+}
+.todayContainer .info{
+    display:flex;
+    flex-direction:column;
+    
+    /* margin-left: 20%; */
+    font-size:1.5em;
+}
+
+.todayContainer li{
+    list-style: none;
+    line-height: 2;
+    padding-bottom: 10px;
+}
+.todayContainer li span{
+    color:red;
+}
+
+.todayHeading .Temprature span{
+    cursor: pointer;
+}
+.fiveDaysWaether .container{
+    border-radius:20px;
+    margin:10px;
+    background-color:rgba(0, 81, 255, 0.164);
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  
+}
+.fiveDaysWaether h2{
+    border-top:1px solid grey;
+    margin: 20px;
+    color:white;
+}
+.fiveDaysWaether .container .dayItem{
+    margin:15px;
+    background-color:rgb(95, 0, 0);
+    min-height:  150px;
+    border-radius:20px;
+    text-align: center;
+
+}
+.fiveDaysWaether .container .dayItem .image{
+    max-width: 50%;
+}
+
+.fiveDaysWaether .container .dayItem .info{
+    
+    margin-left: 20%;
+    font-size:10px;
+    text-align:left; 
+}
+
+.fiveDaysWaether .container .dayItem .info li{
+    list-style: none;
+    line-height: 1.5;
+       color:white;
+
+}
+.fiveDaysWaether .container .dayItem .info li span{
+    list-style: none;
+    line-height: 1.5;
+       color:rgb(0, 241, 60);
+
+}
+
+
+
+@media (max-width: 520px){
+    .todayContainer{
+       text-align: center;
+        display:block;
+    
+    }
+}
