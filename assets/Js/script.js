@@ -2,7 +2,6 @@ const apiKey="65b50ac0fd144e1fbd69be8c79bf2491"
 currentDate=moment().format("MMMM Do YYYY, h:mm ")
 $("#currentDay").text(currentDate);
 var fiveDaysection= $("#fiveDayContainer .row");
-
 var searchBtn = $(".btn");
 var inputEl = $(".cityName");
 const locationElement = document.querySelector(".location p");
@@ -14,7 +13,7 @@ weather.temperature = {
   unit : "celsius", 
   temp : 0
 }
-// APP CONSTS AND VARS
+// add event listner to the search button
 searchBtn.on("click", searchCity);
 
 function clearPage(){
@@ -29,30 +28,23 @@ weather.temperature = {
 }
 
 }
-// searchCity() 
-// Search Function
-// execute getWeather function then add it to the search history
+
+// execute getWeather function 
 function searchCity() {
   $("header .notification h2").text("");
 
    cityName = inputEl.val();
    clearPage();
-   if( inputEl.val() =="") var cityName="London";
+  //  if( inputEl.val() =="") var cityName="London";
 
     console.log("city name is ",cityName)
     getWeather(cityName);
 
-    setTimeout(function(){
+    setTimeout(function(){ //delay the page to geth the fetch response
         displayWeather()},1000);
 
-    
-
-//     // searchHistory.unshift(cityName);
-//     // searchHistory = searchHistory.slice(0,5);
-//     // localStorage.setItem("search",JSON.stringify(searchHistory));
-//     // generateHistory();
-//   
 }
+
 // get weather of a city
 function getWeather(cityName) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
@@ -87,17 +79,18 @@ function getWeather(cityName) {
         })
         .then(function(){
           getFiveDayForecast(cityName) ;
-          updateLocalStorage(cityName) ; 
+          updateLocalStorage(cityName) ;
+          
         })
       
-                // // Render an error message if the city isn't found
-                // .catch((error) => {
-                //   console.log("sadfadsfasdfasdfasdfasqdfsadf")
-                //   $("header .notification h2").text("City Not Found !");
-                //   // var error = $("<h2>");
-                //   // error.html("City not found");
-                //   // $('.main-container .ERROR').append(error);
-                // });
+                // Render an error message if the city isn't found
+                .catch((error) => {
+                  console.log("sadfadsfasdfasdfasdfasqdfsadf")
+                  $("header .notification h2").text("City Not Found !");
+                  // var error = $("<h2>");
+                  // error.html("City not found");
+                  // $('.main-container .ERROR').append(error);
+                });
             
       };
 
@@ -169,6 +162,30 @@ creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon)
 
 //   console.log(timeConverter(0));
 var LOCAL_STORAGE_KEY = "previous_searches";
+getPreviousSearches()
+  var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+  if (previousSearches) {
+    var mylist= JSON.parse(previousSearches);
+  } 
+  console.log(mylist)
+  var cityList= $(".history .savedCities")
+  $(".history .savedCities").empty();
+  for(var i=0;i<mylist.length;i++){
+    cityList.append(`<p class="btn btn-secondary "> ${mylist[i]}</p>`)
+  }
+
+  addButtonEvent() 
+  function addButtonEvent(){
+  $(".savedCities .btn").on("click", function(){
+
+    console.log("hello", $(this).text());
+    cityName=$(this).text();
+    searchCity() 
+    });
+  
+  }
+
 
 function getPreviousSearches() {
   var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -185,7 +202,7 @@ function setPreviousSearches(previousSearches) {
   var cityList= $(".history .savedCities")
   $(".history .savedCities").empty();
   for(var i=0;i<previousSearches.length;i++){
-    cityList.append(`<p> ${previousSearches[i]}</p>`)
+    cityList.append(`<p class="btn btn-secondary "> ${previousSearches[i]}</p>`)
   }
 
 }
@@ -196,8 +213,6 @@ function updateLocalStorage(cityName) {
   previousSearches = [...new Set(previousSearches)]; // remove the duplicated search
   setPreviousSearches(previousSearches);
 }
-
-
 
 // DISPLAY WEATHER TO the UI
 function displayWeather(){
@@ -237,6 +252,7 @@ function fahrenheitToCelcius(temp){
 }
 
 // ________________________________________________________________________________________________
+// WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
 
 //  adding a feature to toggle the temprature between F/C when you click on the temprature
 tempElement=$(".todayHeading .Temprature span")
@@ -256,7 +272,8 @@ tempElement.on("click", function(){
     weather.temperature.unit = "celsius"
   }
 });
-// ________________________________________________________________________________________________
+
+
 //  creat DOM for the five day forecast
 function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 

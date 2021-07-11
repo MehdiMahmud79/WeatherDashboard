@@ -73,7 +73,10 @@ header h2{
     background-color:rgb(0, 125, 228);
     border-radius:20px;
     
- 
+}
+.btn{
+    display:block;
+    font-size:20px;
 }
 .crad-body{
     padding:10px;

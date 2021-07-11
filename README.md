@@ -2,9 +2,8 @@
 
 ```
 + This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery using Third-Party APIs.
-
 + It is responsive user interface that adapts to multiple screen sizes.
-
++ you can change the temprature from Celsius to Fahrenheit and vise versa by clicking on it
 ```
 
 ## Installation
