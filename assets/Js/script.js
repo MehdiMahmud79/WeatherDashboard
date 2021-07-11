@@ -182,7 +182,12 @@ function getPreviousSearches() {
 
 function setPreviousSearches(previousSearches) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(previousSearches));
-  
+  var cityList= $(".history .savedCities")
+  $(".history .savedCities").empty();
+  for(var i=0;i<previousSearches.length;i++){
+    cityList.append(`<p> ${previousSearches[i]}</p>`)
+  }
+
 }
 
 function updateLocalStorage(cityName) {

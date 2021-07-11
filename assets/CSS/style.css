@@ -75,6 +75,13 @@ header h2{
     
  
 }
+.crad-body{
+    padding:10px;
+}
+.crad-body span{
+color: rgb(0, 17, 90);
+font-weight: 600;
+}
 .uviImage img{
     max-height:100px;
 }
