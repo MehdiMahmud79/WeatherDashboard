@@ -78,10 +78,10 @@ header h2{
     display:block;
     font-size:20px;
 }
-.crad-body{
+.card-body{
     padding:10px;
 }
-.crad-body span{
+.card-body span{
 color: rgb(0, 17, 90);
 font-weight: 600;
 }
@@ -140,7 +140,7 @@ color: rgb(129, 0, 26);
 .todayHeading .Temprature span{
     cursor: pointer;
 }
-.fiveDaysWaether .container{
+/* .fiveDaysWaether .container{
     border-radius:20px;
     margin:10px;
     background-color:rgba(0, 81, 255, 0.164);
@@ -186,19 +186,33 @@ color: rgb(129, 0, 26);
     line-height: 1.5;
        color:rgb(0, 241, 60);
 
-}
+} */
 
 
 
-@media (max-width: 820px){
+@media (max-width: 600px){
     .todayContainer{
        text-align: center;
         display:block;
-    
+        margin: 0 auto 0 auto;
+
     }
     .main-container{
         text-align: center;
-         display:block;
-     
+         display:grid;
+         margin: 0 auto 0 auto;
+
      }
+ .search-history{
+     width:80%;
+     margin: 0 auto 0 auto;
+
+ }  
+ .city-weather{
+    margin: 20px auto 0 auto;
+
+ }  
+ .card-body span{
+    color: rgb(73, 73, 73);
+    }
 }

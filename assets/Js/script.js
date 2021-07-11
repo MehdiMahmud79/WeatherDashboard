@@ -284,7 +284,7 @@ function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
       mycard=$(`<div id= "mycard" class="card border border-primary my-3">`);
       
       imgEl=$(`<img class="card-img-top" src="./icons/${dayIcon}.png" alt="weather image">`);
-      cardBodyDiv=$(`<div class="crad-body">`);
+      cardBodyDiv=$(`<div class="card-body">`);
 
       cardBodyDiv.append(`<p class="Temprature">Temprature: <span>°${dayTemp}</span></p>`);
       cardBodyDiv.append(`<p class="Humidity">Humidity:<span> ${dayHumid} </span></p>`) ;
