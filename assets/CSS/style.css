@@ -81,6 +81,10 @@ header h2{
 .card-body{
     padding:10px;
 }
+.card-img-top{
+    width:90px;
+    margin: 0 auto 0 auto;
+}
 .card-body span{
 color: rgb(0, 17, 90);
 font-weight: 600;
@@ -140,7 +144,7 @@ color: rgb(129, 0, 26);
 .todayHeading .Temprature span{
     cursor: pointer;
 }
-/* .fiveDaysWaether .container{
+  .row{
     border-radius:20px;
     margin:10px;
     background-color:rgba(0, 81, 255, 0.164);
@@ -151,6 +155,7 @@ color: rgb(129, 0, 26);
     flex-direction: row;
   
 }
+/*
 .fiveDaysWaether h2{
     border-top:1px solid grey;
     margin: 20px;

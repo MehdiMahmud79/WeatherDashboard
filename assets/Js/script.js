@@ -134,9 +134,11 @@ fetch(api5DaysUrl)
 
   dayListSize=data.list.length;
   console.log(dayListSize)
+  var j=0;
   for (var i=0;i<dayListSize;i+=8){
   // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
-  var theDate = moment().add(i+1, 'days').format('l'); 
+  var theDate = moment().add(j+1, 'days').format("MMMM Do YYYY"); 
+  j++
   var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
   const date2 = new Date((timezoneAdjustedUnix)*1000);
   const date=date2.toLocaleString("UK").split(",")[0];
@@ -279,9 +281,9 @@ function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 
   console.log("the date is ", theDate)
       cardDiv=$(`<div class="col">`);
-      // cardDiv.append(`<h5 class="card-title">${theDate}</h5>`);
 
       mycard=$(`<div id= "mycard" class="card border border-primary my-3">`);
+      mycard.append(`<h5 class="card-title text-center my-2 font-weight-bold text-primary">${theDate}</h5>`);
       
       imgEl=$(`<img class="card-img-top" src="./icons/${dayIcon}.png" alt="weather image">`);
       cardBodyDiv=$(`<div class="card-body">`);
