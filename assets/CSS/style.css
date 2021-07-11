@@ -17,7 +17,7 @@ main{
 }
 header{
     position: relative;
-    background-image: url(./assets/sky.jpg);
+    background-image: url(../sky.jpg);
     background-size:cover;
     background-position: 0% 40%;
     background-repeat: no-repeat;
@@ -28,6 +28,12 @@ header h1, header h2{
     text-align: center;
     padding:20px;
     color: black;
+
+}
+header h2{
+    text-align: center;
+    padding:20px;
+    color: rgb(255, 0, 0);
 
 }
 .local{

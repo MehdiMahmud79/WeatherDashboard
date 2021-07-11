@@ -8,7 +8,7 @@ var inputEl = $(".cityName");
 const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
 // App data
-const weather = {};
+var weather = {};
 
 weather.temperature = {
   unit : "celsius", 
@@ -17,10 +17,26 @@ weather.temperature = {
 // APP CONSTS AND VARS
 searchBtn.on("click", searchCity);
 
+function clearPage(){
+  console.log("clear the page")
+  weather = {};
+
+weather.temperature = {
+  unit : "celsius", 
+  temp : 0
+}
+
+}
+searchCity() 
 // Search Function
 // execute getWeather function then add it to the search history
 function searchCity() {
-    var cityName = inputEl.val();
+  $("header .notification h2").text("");
+
+   cityName = inputEl.val();
+   clearPage();
+   if( inputEl.val() =="") var cityName="London";
+
     console.log("city name is ",cityName)
     getWeather(cityName);
 
@@ -68,13 +84,13 @@ function getWeather(cityName) {
         })
       
                 // // Render an error message if the city isn't found
-                // .catch((error) => {
-                //   console.log("sadfadsfasdfasdfasdfasqdfsadf")
-                //   $("header .ERROR").text("sadfadsfasdfasdfasdfasqdfsadf");
-                //   // var error = $("<h2>");
-                //   // error.html("City not found");
-                //   // $('.main-container .ERROR').append(error);
-                // });
+                .catch((error) => {
+                  console.log("sadfadsfasdfasdfasdfasqdfsadf")
+                  $("header .notification h2").text("City Not Found !");
+                  // var error = $("<h2>");
+                  // error.html("City not found");
+                  // $('.main-container .ERROR').append(error);
+                });
             
       };
 }
