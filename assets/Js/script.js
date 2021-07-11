@@ -8,7 +8,10 @@ const locationElement = document.querySelector(".location p");
 const notificationElement = document.querySelector(".notification");
 // App data
 var weather = {};
-var timezone_offset
+var timezone_offset;
+var LOCAL_STORAGE_KEY = "previous_searches";
+
+
 weather.temperature = {
   unit : "celsius", 
   temp : 0
@@ -19,12 +22,10 @@ searchBtn.on("click", searchCity);
 function clearPage(){
   // $(".city-weather").empty();
    $("#fiveDayContainer .row").empty();
-   console.log("clear the page")
-  weather = {};
-
-weather.temperature = {
-  unit : "celsius", 
-  temp : 0
+    weather = {};
+    weather.temperature = {
+    unit : "celsius", 
+    temp : 0
 }
 
 }
@@ -33,13 +34,13 @@ weather.temperature = {
 function searchCity() {
   $("header .notification h2").text("");
 
-   cityName = inputEl.val();
-   clearPage();
-  //  if( inputEl.val() =="") var cityName="London";
+    cityName = inputEl.val();
+    clearPage();
+    console.log("city name is ",cityName);
 
-    console.log("city name is ",cityName)
     getWeather(cityName);
-
+    updateLocalStorage(cityName) ;
+    addButtonEvent()
     setTimeout(function(){ //delay the page to geth the fetch response
         displayWeather()},1000);
 
@@ -79,17 +80,14 @@ function getWeather(cityName) {
         })
         .then(function(){
           getFiveDayForecast(cityName) ;
-          updateLocalStorage(cityName) ;
           
         })
       
                 // Render an error message if the city isn't found
                 .catch((error) => {
-                  console.log("sadfadsfasdfasdfasdfasqdfsadf")
+                  console.log("City Not Found !")
                   $("header .notification h2").text("City Not Found !");
-                  // var error = $("<h2>");
-                  // error.html("City not found");
-                  // $('.main-container .ERROR').append(error);
+
                 });
             
       };
@@ -120,70 +118,77 @@ function getCityUVI(lat,lon,cityName){
 
 // get 5 days forecast
 function getFiveDayForecast(cityName){
-// var ForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=7e3a149deb7dcf451641dcd1d05f5cd5";
-var api5DaysUrl  = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
-//   var api5DaysUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=7e3a149deb7dcf451641dcd1d05f5cd5";
-console.log("5 days ", api5DaysUrl)
+    // var ForecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=metric&appid=7e3a149deb7dcf451641dcd1d05f5cd5";
+    var api5DaysUrl  = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
+    //   var api5DaysUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=7e3a149deb7dcf451641dcd1d05f5cd5";
+    console.log("5 days ", api5DaysUrl)
 
-fetch(api5DaysUrl)
-.then(function(response){
-    let data = response.json();
-    return data;
-})
-.then(function(data){ 
+    fetch(api5DaysUrl)
+        .then(function(response){
+            let data = response.json();
+            return data;
+        })
+        .then(function(data){ 
 
-  dayListSize=data.list.length;
-  console.log(dayListSize)
-  var j=0;
-  for (var i=0;i<dayListSize;i+=8){
-  // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
-  var theDate = moment().add(j+1, 'days').format("MMMM Do YYYY"); 
-  j++
-  var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
-  const date2 = new Date((timezoneAdjustedUnix)*1000);
-  const date=date2.toLocaleString("UK").split(",")[0];
-  // console.log(date.split(".")[0])
-  if(true){
-    console.log("they are equal",date, weather.todayDate);
-    var dayTemp = data.list[i].main.temp;
-    var dayHumid=data.list[i].main.humidity;
-    var dayWind=data.list[i].wind.speed;
-    var dayDescription=data.list[i].weather[0].description;
-    var dayIcon=data.list[i].weather[0].icon;
+          dayListSize=data.list.length;
+          console.log(dayListSize)
+          var j=0;
+          for (var i=0;i<dayListSize;i+=8){
+          // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
+          var theDate = moment().add(j+1, 'days').format("MMMM Do YYYY"); 
+          j++
+          var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
+          const date2 = new Date((timezoneAdjustedUnix)*1000);
+          const date=date2.toLocaleString("UK").split(",")[0];
+          // console.log(date.split(".")[0])
+          if(true){
+            console.log("they are equal",date, weather.todayDate);
+            var dayTemp = data.list[i].main.temp;
+            var dayHumid=data.list[i].main.humidity;
+            var dayWind=data.list[i].wind.speed;
+            var dayDescription=data.list[i].weather[0].description;
+            var dayIcon=data.list[i].weather[0].icon;
 
-  }
+          }
+// creat five day Dom on the HTML page
+    creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon);
+    inputEl.val("")
+    
+          }
 
-creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon)
+        })
 
 }
 
-})
+// load previous cities to the page
 
-}
-
-
-//   console.log(timeConverter(0));
-var LOCAL_STORAGE_KEY = "previous_searches";
+$( document ).ready(function() {
+  console.log( "ready!" );
 getPreviousSearches()
-  var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
+var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-  if (previousSearches) {
+if (previousSearches) {
     var mylist= JSON.parse(previousSearches);
-  } 
-  console.log(mylist)
+} 
+
+console.log(mylist)
   var cityList= $(".history .savedCities")
   $(".history .savedCities").empty();
   for(var i=0;i<mylist.length;i++){
-    cityList.append(`<p class="btn btn-secondary "> ${mylist[i]}</p>`)
+    cityList.append(`<p class="btn btn-secondary histornBtn "> ${mylist[i]}</p>`)
   }
 
-  addButtonEvent() 
+
+});
+
+
   function addButtonEvent(){
   $(".savedCities .btn").on("click", function(){
 
     console.log("hello", $(this).text());
     cityName=$(this).text();
-    searchCity() 
+    inputEl.val(cityName.trim());
+ 
     });
   
   }
@@ -204,7 +209,7 @@ function setPreviousSearches(previousSearches) {
   var cityList= $(".history .savedCities")
   $(".history .savedCities").empty();
   for(var i=0;i<previousSearches.length;i++){
-    cityList.append(`<p class="btn btn-secondary "> ${previousSearches[i]}</p>`)
+    cityList.append(`<p class="btn btn-secondary histornBtn "> ${previousSearches[i]}</p>`)
   }
 
 }

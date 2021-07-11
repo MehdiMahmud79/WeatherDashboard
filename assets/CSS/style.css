@@ -74,9 +74,10 @@ header h2{
     border-radius:20px;
     
 }
-.btn{
+.histornBtn{
     display:block;
     font-size:20px;
+    text-transform: uppercase;
 }
 .card-body{
     padding:10px;
@@ -147,8 +148,12 @@ color: rgb(129, 0, 26);
   .row{
     border-radius:20px;
     margin:10px;
+    /* background-color:rgba(0, 81, 255, 0.164);
     display:flex;
-  justify-content: stretch;
+    flex-direction: row;
+    justify-content:center; */
+
+  
 }
 /*
 .fiveDaysWaether h2{
