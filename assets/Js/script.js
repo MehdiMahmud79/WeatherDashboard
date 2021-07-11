@@ -86,7 +86,8 @@ function getWeather(cityName) {
 
         })
         .then(function(){
-          getFiveDayForecast(cityName)   
+          getFiveDayForecast(cityName) ;
+          updateLocalStorage(cityName) ; 
         })
       
                 // // Render an error message if the city isn't found
@@ -157,29 +158,9 @@ fetch(api5DaysUrl)
 
   }
 
-// console.log(theDate);
-// console.log(dayTemp);
-// console.log(dayHumid);
-// console.log(dayWind);
-// console.log(dayDescription);
-// console.log(dayIcon);
-
-
 creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon)
 
 }
-    // weather.uvi= data.current.uvi; 
-    // console.log("UVI", weather.uvi)   ;   
-    // console.log(weather); 
-
-    // var timezoneAdjustedUnix = data.current.dt + data.timezone_offset;
-    // const date2 = new Date((timezoneAdjustedUnix)*1000);
-    // const date=date2.toLocaleString("UK").split(",")[0];
-    // weather.todayDate=date;
-    // console.log( `"Date in ${cityName} is "`, date)
-
-
-
 
 })
 
@@ -201,18 +182,19 @@ function getPreviousSearches() {
 
 function setPreviousSearches(previousSearches) {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(previousSearches));
+  
 }
 
 function updateLocalStorage(cityName) {
   var previousSearches = getPreviousSearches();
   previousSearches.unshift(cityName);
-
+  previousSearches = [...new Set(previousSearches)]; // remove the duplicated search
   setPreviousSearches(previousSearches);
 }
 
 
 
-// DISPLAY WEATHER TO UI
+// DISPLAY WEATHER TO the UI
 function displayWeather(){
   var uvim
   if(weather.uvi<3){
@@ -239,14 +221,19 @@ function displayWeather(){
   
 }
 
+// C to F conversion
+
 function celsiusToFahrenheit(temperature){
   return (temperature * 9/5) + 32;
 }
-// C to F conversion
+// F to C conversion
 function fahrenheitToCelcius(temp){
   return (temp -32)* 5/9;
 }
-// $(".todayHeading .Temprature span").text(`°${weather.temperature}`);
+
+// ________________________________________________________________________________________________
+
+//  adding a feature to toggle the temprature between F/C when you click on the temprature
 tempElement=$(".todayHeading .Temprature span")
 console.log("tempElement", tempElement)
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
@@ -264,8 +251,8 @@ tempElement.on("click", function(){
     weather.temperature.unit = "celsius"
   }
 });
-
-
+// ________________________________________________________________________________________________
+//  creat DOM for the five day forecast
 function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 
   console.log("the date is ", theDate)

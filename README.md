@@ -7,12 +7,9 @@
 
 ```
 
-
-
 ## Installation
 
 An application that will run in the browser and feature dynamically updated HTML and CSS powered by JQuery. Application features polished UI and is responsive, ensuring adaptation to multiple screen sizes.
-
 
 ## Mock-Up
 
