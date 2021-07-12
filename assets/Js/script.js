@@ -42,6 +42,10 @@ function searchCity() {
     getWeather(cityName);
     updateLocalStorage(cityName) ;
     addButtonEvent()
+
+    $(".city-weather.hide").removeClass("hide");
+    $(".search-history").removeClass("full");
+
     setTimeout(function(){ //delay the page to geth the fetch response
         displayWeather()},1000);
 

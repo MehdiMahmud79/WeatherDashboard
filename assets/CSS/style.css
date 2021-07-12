@@ -41,6 +41,9 @@ header h2{
     color: rgb(255, 0, 0);
 
 }
+.hide{
+    display:none;
+}
 .local{
     color: rgb(0, 80, 13);
     font-size: 30px;
@@ -58,6 +61,13 @@ header h2{
 }
 .searchbar input, .todayTime{
     text-transform: uppercase;
+
+}
+.search-history.full{
+    width: 100%;
+    margin:10px;
+    background-color:rgb(209, 209, 209);
+    border-radius:20px;
 
 }
 .search-history{
