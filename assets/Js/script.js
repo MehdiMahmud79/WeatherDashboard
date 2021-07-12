@@ -167,7 +167,7 @@ var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
 
 if (previousSearches) {
     var mylist= JSON.parse(previousSearches);
-} 
+
 
 console.log(mylist)
   var cityList= $(".history .savedCities")
@@ -177,7 +177,7 @@ console.log(mylist)
   }
   addButtonEvent()
 
-
+} 
 });
 
 
