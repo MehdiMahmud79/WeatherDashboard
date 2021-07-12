@@ -35,7 +35,7 @@ function clearPage(){
 function searchCity() {
   $("header .notification h2").text("");
 
-    cityName = inputEl.val();
+    cityName = inputEl.val().toUpperCase();
     cityName=cityName.trim();
     clearPage();
     console.log("city name is ",cityName);
