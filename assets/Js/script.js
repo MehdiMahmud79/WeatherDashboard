@@ -10,7 +10,7 @@ const notificationElement = document.querySelector(".notification");
 var weather = {};
 var timezone_offset;
 var LOCAL_STORAGE_KEY = "previous_searches";
-var foundcity
+var foundCity
 
 weather.temperature = {
   unit : "celsius", 
@@ -35,23 +35,23 @@ function clearPage(){
 function searchCity() {
   $("header .notification h2").text("");
 
-    cityName = inputEl.val().trim();
+    cityName = inputEl.val();
+    cityName=cityName.trim();
     clearPage();
     console.log("city name is ",cityName);
 
     getWeather(cityName);
+    updateLocalStorage(cityName) ;
     addButtonEvent()
 
     $(".city-weather.hide").removeClass("hide");
     $(".search-history").removeClass("full");
 
     setTimeout(function(){ //delay the page to geth the fetch response
-        displayWeather()
-  console.log("both city", cityName,foundcity )
-        if(cityName.toLowerCase()==foundcity.toLowerCase())updateLocalStorage(cityName) ;
-     
-      },1000);
- }      
+      cityName=weather.city;
+        displayWeather()},1000);
+
+}
 
 // get weather of a city
 function getWeather(cityName) {
@@ -68,10 +68,8 @@ function getWeather(cityName) {
             weather.iconId = data.weather[0].icon;
             weather.city = data.name;
             weather.windSpeed = data.wind.speed;
-            weather.city=cityName;
-            foundcity=data.name;
-            console.log("city name", foundcity);
-
+            weather.city=data.name;
+            
             weather.humidity = data.main.humidity
             weather.country = data.sys.country;
             weather.lat= Math.floor(data.coord.lat);
@@ -91,12 +89,11 @@ function getWeather(cityName) {
         .then(function(){
           getFiveDayForecast(cityName) ;
           
-
         })
       
                 // Render an error message if the city isn't found
                 .catch((error) => {
-                  console.log("City Not Found !", error)
+                  console.log("City Not Found !")
                   $("header .notification h2").text("City Not Found !");
 
                 });
