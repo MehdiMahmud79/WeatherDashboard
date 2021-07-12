@@ -1,5 +1,5 @@
 const apiKey="65b50ac0fd144e1fbd69be8c79bf2491"
-currentDate=moment().format("MMMM Do YYYY, h:mm ")
+currentDate=moment().format("MMMM Do YYYY")//, h:mm 
 $("#currentDay").text(currentDate);
 var fiveDaysection= $("#fiveDayContainer .row");
 var searchBtn = $(".btn");
@@ -134,19 +134,20 @@ function getFiveDayForecast(cityName){
           for (var i=0;i<dayListSize;i+=8){
           // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
           var theDate = moment().add(j+1, 'days').format("MMMM Do YYYY"); 
-          j++
           var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
           const date2 = new Date((timezoneAdjustedUnix)*1000);
           const date=date2.toLocaleString("UK").split(",")[0];
           // console.log(date.split(".")[0])
-          if(true){
+          // if(true){
+           j++
+           
             var dayTemp = data.list[i].main.temp;
             var dayHumid=data.list[i].main.humidity;
             var dayWind=data.list[i].wind.speed;
             var dayDescription=data.list[i].weather[0].description;
             var dayIcon=data.list[i].weather[0].icon;
 
-          }
+          // }
 // creat five day Dom on the HTML page
     creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon);
     inputEl.val("")
