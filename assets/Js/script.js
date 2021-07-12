@@ -109,7 +109,20 @@ function getCityUVI(lat,lon,cityName){
         })
         .then(function(data){ 
             weather.uvi= data.current.uvi; 
-            console.log("UVI", weather.uvi)   ;   
+            console.log("UVI", weather.uvi);
+            var uvim
+            if(weather.uvi<4){
+              uvim="uviLow";
+              console.log("low UVI")
+            }else if(weather.uvi<6){
+              uvim="uviModerate";
+              console.log("moderate UVI")
+            }else{
+               uvim="uviExtreame";
+               console.log("Extreame UVI")
+            } 
+               $(".info .UVIndex span").text(`${weather.uvi}`);
+              $(".uviImage img").attr("src", `./icons/${uvim}.png`);   
             console.log(weather); 
             timezone_offset=data.timezone_offset
             var timezoneAdjustedUnix = data.current.dt + timezone_offset;
@@ -247,24 +260,13 @@ function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 
 // DISPLAY WEATHER TO the UI
 function displayWeather(){
-  var uvim
-  if(weather.uvi<3){
-    uvim="uviLow";
-    console.log("low UVI")
-  }else if(weather.uvi<5){
-    uvim="uviModerate";
-    console.log("moderate UVI")
-  }else{
-     uvim="uviExtreame";
-     console.log("Extreame UVI")
-  }
-    $(".uviImage img").attr("src", `./icons/${uvim}.png`);
+  
     $(".weatherIcon").attr("src", `./icons/${weather.iconId}.png`);
 
     $(".todayHeading .Temprature span").text(`°${weather.temperature.temp}C`);
     $(".info .Humidity span").text(`${weather.humidity}%`);
     $(".info .WindSpeed span").text(`${weather.windSpeed}`);
-    $(".info .UVIndex span").text(`${weather.uvi}`);
+
     $(".todayHeading .description").text(`${weather.description}`);
     
     $(".todayTime span").text(`  ${weather.city}`);
