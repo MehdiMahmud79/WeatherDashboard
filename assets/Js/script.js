@@ -29,7 +29,6 @@ function clearPage(){
 }
 
 }
-
 // execute getWeather function 
 function searchCity() {
   $("header .notification h2").text("");
@@ -177,6 +176,7 @@ console.log(mylist)
   for(var i=0;i<mylist.length;i++){
     cityList.append(`<p class="btn btn-secondary histornBtn "> ${mylist[i]}</p>`)
   }
+  addButtonEvent()
 
 
 });
@@ -215,10 +215,13 @@ function setPreviousSearches(previousSearches) {
 }
 
 function updateLocalStorage(cityName) {
+  if(cityName!==""){
+    console.log("hatinewe", cityName)
   var previousSearches = getPreviousSearches();
   previousSearches.unshift(cityName);
   previousSearches = [...new Set(previousSearches)]; // remove the duplicated search
   setPreviousSearches(previousSearches);
+  }
 }
 
 // DISPLAY WEATHER TO the UI
