@@ -137,16 +137,31 @@ function getFiveDayForecast(cityName){
 
           dayListSize=data.list.length;
           var j=0;
+          var counter=0
+
           for (var i=0;i<dayListSize;i++){
+                 var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
+                const date2 = new Date((timezoneAdjustedUnix)*1000);
+                const date=date2.toLocaleString("UK").split(",")[0];
+                todayDay=currentDate.split("th")[0].split(" ")[1];
+                // theDate=date2.toLocaleString("UK");
+                listDay=date.split(".")[0];
+                
+                if(listDay<=todayDay)counter++
+          }
+          console.log("counter", counter)
+          for (var i=counter;i<dayListSize;i++){
           // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
           var theDate = moment().add(j+1, 'days').format("MMMM Do YYYY"); 
           var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
           const date2 = new Date((timezoneAdjustedUnix)*1000);
           const date=date2.toLocaleString("UK").split(",")[0];
           todayDay=currentDate.split("th")[0].split(" ")[1];
-          // theDate=date2.toLocaleString("UK");
-          listDay=date.split(".")[0]
-          if(listDay>=todayDay && i%8==0 && j<=5){
+          hourss=date2.toLocaleString("UK").split(",")[1].split(":")[0];
+          listDay=date.split(".")[0];
+          // theDate=date2.toLocaleString("UK").split(",")
+          if( parseInt(hourss)==10){
+            
            j++
            console.log("list date and the current date",i, listDay , todayDay)
           
