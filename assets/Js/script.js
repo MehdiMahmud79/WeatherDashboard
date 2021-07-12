@@ -16,6 +16,8 @@ weather.temperature = {
   unit : "celsius", 
   temp : 0
 }
+$( document ).ready(function() {
+
 // add event listner to the search button
 searchBtn.on("click", searchCity);
 
@@ -158,14 +160,11 @@ function getFiveDayForecast(cityName){
 
 }
 
-
-
-
   function addButtonEvent(){
   $(".savedCities .btn").on("click", function(){
     cityName=$(this).text();
     inputEl.val(cityName.trim());
- 
+ searchCity()
     });
   
   }
@@ -265,7 +264,6 @@ function fahrenheitToCelcius(temp){
 
 // ________________________________________________________________________________________________
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
-$( document ).ready(function() {
 //  adding a feature to toggle the temprature between F/C when you click on the temprature
 tempElement=$(".todayHeading .Temprature span")
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
