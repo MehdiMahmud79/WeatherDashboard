@@ -160,7 +160,7 @@ function getFiveDayForecast(cityName){
           hourss=date2.toLocaleString("UK").split(",")[1].split(":")[0];
           listDay=date.split(".")[0];
           // theDate=date2.toLocaleString("UK").split(",")
-          if( parseInt(hourss)==10){
+          if( (parseInt(hourss)==10 || parseInt(hourss)==11 ||parseInt(hourss)==12 ||parseInt(hourss)==13 ||parseInt(hourss)==14) && j<5){
             
            j++
            console.log("list date and the current date",i, listDay , todayDay)
