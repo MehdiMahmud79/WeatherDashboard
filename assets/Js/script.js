@@ -121,7 +121,7 @@ function getCityUVI(lat,lon,cityName){
                uvim="uviExtreame";
                console.log("Extreame UVI")
             } 
-               $(".info .UVIndex span").text(`${weather.uvi}`);
+              $(".info .UVIndex span").text(`${weather.uvi}`);
               $(".uviImage img").attr("src", `./icons/${uvim}.png`);   
             console.log(weather); 
             timezone_offset=data.timezone_offset
