@@ -158,27 +158,7 @@ function getFiveDayForecast(cityName){
 
 }
 
-// load previous cities to the page
 
-$( document ).ready(function() {
-  console.log( " Document is ready!" );
-getPreviousSearches()
-var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-if (previousSearches) {
-    var mylist= JSON.parse(previousSearches);
-
-
-console.log(mylist)
-  var cityList= $(".history .savedCities")
-  $(".history .savedCities").empty();
-  for(var i=0;i<mylist.length;i++){
-    cityList.append(`<p class="btn btn-secondary histornBtn "> ${mylist[i]}</p>`)
-  }
-  addButtonEvent()
-
-} 
-});
 
 
   function addButtonEvent(){
@@ -220,6 +200,29 @@ function updateLocalStorage(cityName) {
   }
 }
 
+
+//  creat DOM for the five day forecast
+function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
+
+      cardDiv=$(`<div class="col">`);
+
+      mycard=$(`<div id= "mycard" class="card border border-primary my-3">`);
+      mycard.append(`<h5 class="card-title text-center my-2 font-weight-bold text-primary">${theDate}</h5>`);
+      mycard.append(`<h5 class="card-title text-center my-2 font-weight-bold text-primary">${dayDescription}</h5>`);
+      
+      imgEl=$(`<img class="card-img-top" src="./icons/${dayIcon}.png" alt="weather image">`);
+      cardBodyDiv=$(`<div class="card-body">`);
+
+      cardBodyDiv.append(`<p class="Temprature">Temprature: <span>°${dayTemp}</span></p>`);
+      cardBodyDiv.append(`<p class="Humidity">Humidity:<span> ${dayHumid} </span></p>`) ;
+      cardBodyDiv.append(`<p class="WindSpeed">WindSpeed:<span> ${dayWind}MPH</span> </p>` )  ;
+      mycard.append(imgEl, cardBodyDiv)
+
+      cardDiv.append(mycard);
+      fiveDaysection.append(cardDiv)    ;
+  // }
+}
+
 // DISPLAY WEATHER TO the UI
 function displayWeather(){
   var uvim
@@ -257,9 +260,12 @@ function fahrenheitToCelcius(temp){
   return (temp -32)* 5/9;
 }
 
+
+
+
 // ________________________________________________________________________________________________
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
-
+$( document ).ready(function() {
 //  adding a feature to toggle the temprature between F/C when you click on the temprature
 tempElement=$(".todayHeading .Temprature span")
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
@@ -278,25 +284,23 @@ tempElement.on("click", function(){
   }
 });
 
+// load previous cities to the page
 
-//  creat DOM for the five day forecast
-function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 
-      cardDiv=$(`<div class="col">`);
+getPreviousSearches()
+var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
 
-      mycard=$(`<div id= "mycard" class="card border border-primary my-3">`);
-      mycard.append(`<h5 class="card-title text-center my-2 font-weight-bold text-primary">${theDate}</h5>`);
-      mycard.append(`<h5 class="card-title text-center my-2 font-weight-bold text-primary">${dayDescription}</h5>`);
-      
-      imgEl=$(`<img class="card-img-top" src="./icons/${dayIcon}.png" alt="weather image">`);
-      cardBodyDiv=$(`<div class="card-body">`);
+if (previousSearches) {
+    var mylist= JSON.parse(previousSearches);
+console.log(mylist)
+cityList= $(".history .savedCities")
+  $(".history .savedCities").empty();
+  for(var i=0;i<mylist.length;i++){
+    cityList.append(`<p class="btn btn-secondary histornBtn "> ${mylist[i]}</p>`)
+  }
+  addButtonEvent()
 
-      cardBodyDiv.append(`<p class="Temprature">Temprature: <span>°${dayTemp}</span></p>`);
-      cardBodyDiv.append(`<p class="Humidity">Humidity:<span> ${dayHumid} </span></p>`) ;
-      cardBodyDiv.append(`<p class="WindSpeed">WindSpeed:<span> ${dayWind}MPH</span> </p>` )  ;
-      mycard.append(imgEl, cardBodyDiv)
+} 
+console.log( " Document is ready!" );
 
-      cardDiv.append(mycard);
-      fiveDaysection.append(cardDiv)    ;
-  // }
-}
+});
