@@ -24,16 +24,21 @@ header{
     position: relative;
     background-image: url(../sky.jpg);
     background-size:cover;
-    background-position: 0% 40%;
+    background-position: 0% 50%;
     background-repeat: no-repeat;
     min-height:100px;
     color: black;
 }
 header h1, header h2{
     text-align: center;
-    padding:20px;
+    /* padding:10px; */
     color: black;
-
+}
+header h1{
+    font-size:80px;
+    opacity:50%;
+    text-align: center;
+    padding-top:20px;
 }
 header h2{
     text-align: center;
