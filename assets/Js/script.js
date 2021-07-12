@@ -111,10 +111,10 @@ function getCityUVI(lat,lon,cityName){
             weather.uvi= data.current.uvi; 
             console.log("UVI", weather.uvi);
             var uvim
-            if(weather.uvi<3){
+            if(weather.uvi<4){
               uvim="uviLow";
               console.log("low UVI")
-            }else if(weather.uvi<5){
+            }else if(weather.uvi<6){
               uvim="uviModerate";
               console.log("moderate UVI")
             }else{
