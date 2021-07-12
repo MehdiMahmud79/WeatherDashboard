@@ -10,7 +10,7 @@ const notificationElement = document.querySelector(".notification");
 var weather = {};
 var timezone_offset;
 var LOCAL_STORAGE_KEY = "previous_searches";
-
+var foundcity
 
 weather.temperature = {
   unit : "celsius", 
@@ -35,21 +35,23 @@ function clearPage(){
 function searchCity() {
   $("header .notification h2").text("");
 
-    cityName = inputEl.val();
+    cityName = inputEl.val().trim();
     clearPage();
     console.log("city name is ",cityName);
 
     getWeather(cityName);
-    updateLocalStorage(cityName) ;
     addButtonEvent()
 
     $(".city-weather.hide").removeClass("hide");
     $(".search-history").removeClass("full");
 
     setTimeout(function(){ //delay the page to geth the fetch response
-        displayWeather()},1000);
-
-}
+        displayWeather()
+  console.log("both city", cityName,foundcity )
+        if(cityName.toLowerCase()==foundcity.toLowerCase())updateLocalStorage(cityName) ;
+     
+      },1000);
+ }      
 
 // get weather of a city
 function getWeather(cityName) {
@@ -67,6 +69,9 @@ function getWeather(cityName) {
             weather.city = data.name;
             weather.windSpeed = data.wind.speed;
             weather.city=cityName;
+            foundcity=data.name;
+            console.log("city name", foundcity);
+
             weather.humidity = data.main.humidity
             weather.country = data.sys.country;
             weather.lat= Math.floor(data.coord.lat);
@@ -86,11 +91,12 @@ function getWeather(cityName) {
         .then(function(){
           getFiveDayForecast(cityName) ;
           
+
         })
       
                 // Render an error message if the city isn't found
                 .catch((error) => {
-                  console.log("City Not Found !")
+                  console.log("City Not Found !", error)
                   $("header .notification h2").text("City Not Found !");
 
                 });
@@ -138,7 +144,7 @@ function getFiveDayForecast(cityName){
           dayListSize=data.list.length;
           var j=0;
           var counter=0
-
+test=false
           for (var i=0;i<dayListSize;i++){
                  var timezoneAdjustedUnix = data.list[i].dt + timezone_offset;
                 const date2 = new Date((timezoneAdjustedUnix)*1000);
@@ -159,9 +165,9 @@ function getFiveDayForecast(cityName){
           todayDay=currentDate.split("th")[0].split(" ")[1];
           hourss=date2.toLocaleString("UK").split(",")[1].split(":")[0];
           listDay=date.split(".")[0];
-          // theDate=date2.toLocaleString("UK").split(",")
-          if( (parseInt(hourss)==10 || parseInt(hourss)==11 ||parseInt(hourss)==12 ||parseInt(hourss)==13 ||parseInt(hourss)==14) && j<5){
-            
+          theDate=date2.toLocaleString("UK").split(",")
+          if( (parseInt(hourss)==10 || parseInt(hourss)==11 ||parseInt(hourss)==12 ) && j<5 ){
+            test=true
            j++
            console.log("list date and the current date",i, listDay , todayDay)
           
