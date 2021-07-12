@@ -160,7 +160,7 @@ test=false
           todayDay=currentDate.split("th")[0].split(" ")[1];
           hourss=date2.toLocaleString("UK").split(",")[1].split(":")[0];
           listDay=date.split(".")[0];
-          theDate=date2.toLocaleString("UK").split(",")
+          // theDate=date2.toLocaleString("UK").split(",")
           if( (parseInt(hourss)==10 || parseInt(hourss)==11 ||parseInt(hourss)==12 ) && j<5 ){
             test=true
            j++
