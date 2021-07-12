@@ -130,7 +130,6 @@ function getFiveDayForecast(cityName){
         .then(function(data){ 
 
           dayListSize=data.list.length;
-          console.log(dayListSize)
           var j=0;
           for (var i=0;i<dayListSize;i+=8){
           // console.log(i, data.list[i].dt_txt)//.split(" ")[0]
@@ -141,7 +140,6 @@ function getFiveDayForecast(cityName){
           const date=date2.toLocaleString("UK").split(",")[0];
           // console.log(date.split(".")[0])
           if(true){
-            console.log("they are equal",date, weather.todayDate);
             var dayTemp = data.list[i].main.temp;
             var dayHumid=data.list[i].main.humidity;
             var dayWind=data.list[i].wind.speed;
@@ -162,7 +160,7 @@ function getFiveDayForecast(cityName){
 // load previous cities to the page
 
 $( document ).ready(function() {
-  console.log( "ready!" );
+  console.log( " Document is ready!" );
 getPreviousSearches()
 var previousSearches = localStorage.getItem(LOCAL_STORAGE_KEY);
 
@@ -184,8 +182,6 @@ console.log(mylist)
 
   function addButtonEvent(){
   $(".savedCities .btn").on("click", function(){
-
-    console.log("hello", $(this).text());
     cityName=$(this).text();
     inputEl.val(cityName.trim());
  
@@ -216,7 +212,6 @@ function setPreviousSearches(previousSearches) {
 
 function updateLocalStorage(cityName) {
   if(cityName!==""){
-    console.log("hatinewe", cityName)
   var previousSearches = getPreviousSearches();
   previousSearches.unshift(cityName);
   previousSearches = [...new Set(previousSearches)]; // remove the duplicated search
@@ -266,7 +261,6 @@ function fahrenheitToCelcius(temp){
 
 //  adding a feature to toggle the temprature between F/C when you click on the temprature
 tempElement=$(".todayHeading .Temprature span")
-console.log("tempElement", tempElement)
 // WHEN THE USER CLICKS ON THE TEMPERATURE ELEMENET
 tempElement.on("click", function(){
   if(weather.temperature.temp === "undefined") return;
@@ -287,7 +281,6 @@ tempElement.on("click", function(){
 //  creat DOM for the five day forecast
 function creatDOM(theDate, dayTemp,dayHumid, dayWind, dayDescription,dayIcon){
 
-  console.log("the date is ", theDate)
       cardDiv=$(`<div class="col">`);
 
       mycard=$(`<div id= "mycard" class="card border border-primary my-3">`);
