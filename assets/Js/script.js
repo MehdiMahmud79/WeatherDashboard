@@ -47,10 +47,6 @@ function searchCity() {
     $(".city-weather.hide").removeClass("hide");
     $(".search-history").removeClass("full");
 
-    setTimeout(function(){ //delay the page to geth the fetch response
-      cityName=weather.city;
-        displayWeather()},1000);
-
 }
 
 // get weather of a city
@@ -89,6 +85,8 @@ function getWeather(cityName) {
         .then(function(){
           getFiveDayForecast(cityName) ;
           
+        }).then(function(){
+          displayWeather()
         })
       
                 // Render an error message if the city isn't found
