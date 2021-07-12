@@ -83,19 +83,6 @@ function getWeather(cityName) {
 
         })
         .then(function(){
-       var uvim
-            if(weather.uvi<4){
-              uvim="uviLow";
-              console.log("low UVI")
-            }else if(weather.uvi<6){
-              uvim="uviModerate";
-              console.log("moderate UVI")
-            }else{
-               uvim="uviExtreame";
-               console.log("Extreame UVI")
-            } 
-              $(".info .UVIndex span").text(`${weather.uvi}`);
-              $(".uviImage img").attr("src", `./icons/${uvim}.png`); 
           getFiveDayForecast(cityName) ;
           
         }).then(function(){
@@ -123,7 +110,19 @@ function getCityUVI(lat,lon,cityName){
         .then(function(data){ 
             weather.uvi= data.current.uvi; 
             console.log("UVI", weather.uvi);
-             
+            var uvim
+            if(weather.uvi<4){
+              uvim="uviLow";
+              console.log("low UVI")
+            }else if(weather.uvi<6){
+              uvim="uviModerate";
+              console.log("moderate UVI")
+            }else{
+               uvim="uviExtreame";
+               console.log("Extreame UVI")
+            } 
+              $(".info .UVIndex span").text(`${weather.uvi}`);
+              $(".uviImage img").attr("src", `./icons/${uvim}.png`);   
             console.log(weather); 
             timezone_offset=data.timezone_offset
             var timezoneAdjustedUnix = data.current.dt + timezone_offset;
