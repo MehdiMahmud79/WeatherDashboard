@@ -1,5 +1,5 @@
 # City-Weather-Dashboard
-
+This app will show the current weather and five-day forecast of a specific city 
 ### current and five day forecast for a chosen city. 
 ```
 + This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery using Third-Party APIs.
